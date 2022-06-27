@@ -58,28 +58,30 @@ export default function App() {
             }
 
             function callback(results, status) {
+                console.log('cb')
                 if (status == window.google.maps.places.PlacesServiceStatus.OK) {
                     // set base timeout for a cool effect if everything else is instant B)
-                    setTimeout(() => {
 
-                        // // switch to normal screen
-                        setIsLoading(false);
-                        let place = results[Math.floor(Math.random() * results.length)]; // random place from list
-                        let useName = place.name.length > 19 ? `${place.name.substring(0, 14)}...` : place.name; // truncate name if on mobile
-                        console.log(place)
-                        // // update location results
-                        setLocationData({
-                            name: window.mobileCheck() ? useName : place.name, // run mobile check
-                            maplink: `https://www.google.com/maps/search/?api=1&query=${place.geometry.location.lat()}%2C${place.geometry.location.lng()}&query_place_id=${place.place_id}`,
-                            photo: place.photos[0].getUrl({ 'maxWidth': 300, 'maxHeight': 340 })
-                        })
-                        window.startConfetti();
-                        setTimeout(() => window.stopConfetti(), 4000);
-                    }, 2500);
+
+                    // // switch to normal screen
+
+                    let place = results[Math.floor(Math.random() * results.length)]; // random place from list
+                    let useName = place.name.length > 19 ? `${place.name.substring(0, 14)}...` : place.name; // truncate name if on mobile
+                    console.log(place)
+                    // // update location results
+                    setLocationData({
+                        name: window.mobileCheck() ? useName : place.name, // run mobile check
+                        maplink: `https://www.google.com/maps/search/?api=1&query=${place.geometry.location.lat()}%2C${place.geometry.location.lng()}&query_place_id=${place.place_id}`,
+                        photo: place.photos[0].getUrl({ 'maxWidth': 300, 'maxHeight': 340 })
+                    })
+                    window.startConfetti();
+                    setIsLoading(false);
+                    setTimeout(() => window.stopConfetti(), 4000);
+
                 }
             }
 
-            initialize();
+            setTimeout(() => { initialize() }, 3400);
 
         });
     }, []);
@@ -96,7 +98,7 @@ export default function App() {
                 maplink={locationData.maplink}
                 photo={locationData.photo}
             />
-            <small>Jameson Brown &copy; 2022 goeat.at All Rights Reserved.</small>
+            {/* <small>Jameson Brown &copy; 2022 goeat.at All Rights Reserved.</small> */}
         </div>
     ) : (
         <div className="container">

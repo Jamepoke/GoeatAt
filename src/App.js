@@ -51,7 +51,7 @@ export default function App() {
                         setLocationData({
                             name: window.mobileCheck() ? useName : place.name, // run mobile check
                             maplink: `https://www.google.com/maps/search/?api=1&query=${place.geometry.location.lat}%2C${place.geometry.location.lng}&query_place_id=${place.place_id}`,
-                            photo: `https://maps.googleapis.com/maps/api/place/photo?photoreference=${place.photos[0].photo_reference}&sensor=false&maxheight=${300}&maxwidth=${340}&key=AIzaSyCGRaXpiEmx569Hk4hVfhPsBAQyrNThUQc`
+                           photo: `https://maps.googleapis.com/maps/api/place/photo?photoreference=${place.photos[0].photo_reference}&sensor=false&maxheight=${300}&maxwidth=${340}&key=AIzaSyCGRaXpiEmx569Hk4hVfhPsBAQyrNThUQc`
                         })
                         window.startConfetti();
                         setTimeout(() => window.stopConfetti(), 4000);
@@ -67,7 +67,7 @@ export default function App() {
         <div className="container-loaded">
             
             <h1>Go eat <span className="text-highlight ">at:</span></h1>
-            {/*pass loading stuff to Place component */}
+            {/** */}
            <Place name={locationData.name} reRender={reRender} maplink={locationData.maplink} photo={locationData.photo}/>
            <small >Jameson Brown &copy; 2022 goeat.at All Rights Reserved.</small>
         </div>

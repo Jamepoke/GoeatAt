@@ -81,7 +81,7 @@ export default function App() {
                 }
             }
 
-            setTimeout(() => { initialize() }, 3400);
+            setTimeout(() => { initialize() }, 4300);
 
         });
     }, []);
